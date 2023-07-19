@@ -1,0 +1,20 @@
+<div *ngIf="showSearchBar" class="search-bar">
+  <form class="row" role="search">
+    <div class="d-flex mt-2">
+      <input
+        class="form-control me-2"
+        [(ngModel)]="searchTerm"
+        name="search"
+        type="search"
+        placeholder="Search"
+      />
+      <button
+        class="btn btn-outline-success"
+        type="submit"
+        (click)="onSearch()"
+      >
+        Search
+      </button>
+    </div>
+  </form>
+</div>

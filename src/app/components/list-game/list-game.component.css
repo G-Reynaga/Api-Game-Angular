@@ -1,0 +1,39 @@
+h1 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.selects select{
+  background: #263241;
+  border: none;
+  color: #fff;
+}
+
+.card-juegos {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  background-color: #263241;
+  border-radius: 15px;
+  color: #fff;
+  overflow: hidden;
+}
+
+.card img {
+  transition: all 0.4s;
+}
+
+.card img:hover {
+  transform: scale(1.05);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
