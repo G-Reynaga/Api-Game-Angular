@@ -10,6 +10,11 @@ import { Game } from 'src/app/interfaces/game';
 })
 export class ListGameComponent implements OnInit {
   juegos: Game[] = []; // Lista completa de juegos;
+  filteredGames: Game[] = [];
+  genres: string[] = [];
+  platforms: string[] = [];
+
+  //Esto es para el paginado
   currentPage = 1;
   itemsPerPage = 10;
   totalItems = 0;
@@ -17,7 +22,16 @@ export class ListGameComponent implements OnInit {
   constructor(private apiGameService: ApiGameService, private router: Router) {}
 
   ngOnInit() {
-    this.obtenerJuegos();
+    this.apiGameService.obtenerJuegos().subscribe(
+      (juegos) => {
+        this.juegos = juegos;
+        this.filteredGames = juegos;
+        this.extractGenerosAndPlataformas(juegos);
+      },
+      (error) => {
+        console.log('Error al cargar los datos', error);
+      }
+    );
   }
 
   obtenerJuegos() {
@@ -32,8 +46,41 @@ export class ListGameComponent implements OnInit {
     );
   }
 
+  private extractGenerosAndPlataformas(juegos: Game[]) {
+    this.genres = [...new Set(juegos.map((juego) => juego.genre))];
+    this.platforms = [...new Set(juegos.map((juego) => juego.platform))];
+  }
+
+  filterByGenero(genero: string) {
+    if (genero === 'todos') {
+      this.filteredGames = this.juegos;
+    } else {
+      this.apiGameService.filterCategory(genero).subscribe(
+        (juegosFiltrados) => {
+          this.filteredGames = juegosFiltrados;
+        },
+        (error) => {
+          console.log('Error al filtrar por género', error);
+        }
+      );
+    }
+  }
+
+  filterByPlataforma(plataforma: string) {
+    if (plataforma === 'todos') {
+      this.filteredGames = this.juegos;
+    } else {
+      this.apiGameService.filterPlataform(plataforma).subscribe(
+        (juegosFiltrados) => {
+          this.filteredGames = juegosFiltrados;
+        },
+        (error) => {
+          console.log('Error al filtrar por plataforma', error);
+        }
+      );
+    }
+  }
   onPageChange(pageNumber: number) {
     this.currentPage = pageNumber;
   }
-  
 }

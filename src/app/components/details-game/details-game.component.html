@@ -1,21 +1,26 @@
-<div class="container">
+<div class="container animate__animated animate__fadeIn">
+  <a class="me-2" [routerLink]="['/games']">
+    <img src=".././../../assets/arrow_navigation_icon.png" alt="back" />
+  </a>
   <h1>{{ juego.title }}</h1>
-  <img
-    [src]="juego.thumbnail"
-    class="card-img-top"
-    alt="Imagen del juego"
-    class="img-thumbnail col-lg-4 col-md-8"
-  />
-  <div>
-    <p>
-      Platform: <span>{{ juego.platform }}</span>
-    </p>
-    <p>
-      Genre: <span>{{ juego.genre }}</span>
-    </p>
+  <div class="game">
+    <img
+      [src]="juego.thumbnail"
+      class="card-img-top"
+      alt="Imagen del juego"
+      class="img-thumbnail col-lg-6 col-md-8"
+    />
+    <div>
+      <p>
+        Platform: <span>{{ juego.platform }}</span>
+      </p>
+      <p>
+        Genre: <span>{{ juego.genre }}</span>
+      </p>
+      <h2>About the game</h2>
+      <span>{{ juego.description }}</span>
+    </div>
   </div>
-  <h2>About the game</h2>
-  <span>{{ juego.description }}</span>
   <div class="requisitos">
     <h2>System Requirements</h2>
     <p>

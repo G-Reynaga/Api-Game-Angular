@@ -1,12 +1,43 @@
-h1 {
-  color: #fff;
+.container {
+  background-color: #172535;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 2rem;
 }
 
-img{
+.container a img{
+  width: 2rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+img {
   border-radius: 15px;
   margin: 1rem 0;
 }
 
-.requisitos{
+.game {
+  display: flex;
+  gap: 4rem;
+  background-color: #283f57;
+  padding: 2rem;
+  border-radius: 15px;
+}
+
+.requisitos {
   margin-top: 1rem;
+}
+
+@media only screen and (max-width: 480px) {
+  /* Estilos para dispositivos móviles */
+  .game {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 1024px) {
+  /* Estilos para tabletas */
+  .game {
+    display: block;
+  }
 }

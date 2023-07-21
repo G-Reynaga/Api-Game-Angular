@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ApiGameService } from 'src/app/services/api-game.service';
 import { Game } from 'src/app/interfaces/game';

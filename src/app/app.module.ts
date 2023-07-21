@@ -10,6 +10,7 @@ import { ListGameComponent } from './components/list-game/list-game.component';
 import { DetailsGameComponent } from './components/details-game/details-game.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FilterGameComponent } from './components/filter-game/filter-game.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
     DetailsGameComponent,
     NavbarComponent,
     FilterGameComponent,
+    LandingComponent,
   ],
   imports: [
     BrowserModule,

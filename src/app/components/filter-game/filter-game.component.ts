@@ -19,7 +19,7 @@ export class FilterGameComponent {
   ngOnInit() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.showSearchBar = event.url === '/games'; // Ajusta la ruta de inicio según tu configuración
+        this.showSearchBar = event.url === '/games';
       }
     });
   }

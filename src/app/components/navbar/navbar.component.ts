@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { ApiGameService } from 'src/app/services/api-game.service';
 import { Game } from 'src/app/interfaces/game';
 
@@ -11,6 +11,8 @@ import { Game } from 'src/app/interfaces/game';
 export class NavbarComponent {
   juegos: Game[] = [];
   searchResults: Game[] = [];
+  // showNavBar: boolean = false;
+
   constructor(private apiGameService: ApiGameService, private router: Router) {}
 
   handleSearch(searchTerm: string) {
@@ -30,4 +32,13 @@ export class NavbarComponent {
       }
     );
   }
+
+  //Esta metodo es para que el navBar solo se vea en la ruta games
+  // ngOnInit() {
+  //   this.router.events.subscribe((event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       this.showNavBar = event.url === '/games';
+  //     }
+  //   });
+  // }
 }

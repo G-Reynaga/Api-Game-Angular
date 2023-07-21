@@ -1,0 +1,37 @@
+.landing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.landing-content {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  background: #15070796;
+  padding: 1rem;
+  width: 80%;
+}
+
+.card-title {
+  text-align: center;
+}
+
+.card-img-overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+@media only screen and (max-width: 480px) {
+  .landing-content{
+    width: initial
+  }
+  .card-title{
+    font-size: initial;
+  }
+  .card-text{
+    font-size: initial;
+  }
+}

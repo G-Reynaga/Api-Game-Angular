@@ -1,32 +1,36 @@
 <h1>List of Video Games</h1>
+
 <div class="container selects">
   <div class="row justify-content-center">
     <div class="col-lg-4 d-flex">
       <select class="form-select me-2 mb-3">
         <option selected disabled>Category</option>
-        <option *ngFor="let juego of juegos" [value]="juego.genre">
-          {{ juego.genre }}
+        <option value="todos">Todos</option>
+        <option *ngFor="let genero of genres" [value]="genero">
+          {{ genero }}
         </option>
       </select>
       <select class="form-select mb-3">
         <option selected disabled>Platform</option>
-        <option *ngFor="let juego of juegos" [value]="juego.platform">
-          {{ juego.platform }}
+        <option value="todos">Todos</option>
+        <option *ngFor="let plataforma of platforms" [value]="plataforma">
+          {{ plataforma }}
         </option>
       </select>
     </div>
   </div>
 </div>
-<div class="container card-juegos">
+
+<div class="container-fluid card-juegos animate__animated animate__fadeIn">
   <div
     class="col-lg-3 col-md-5"
     *ngFor="
       let juego of juegos
-        | paginate : { itemsPerPage: 12, currentPage: currentPage }
+        | paginate : { itemsPerPage: 20, currentPage: currentPage }
     "
   >
     <div class="card">
-      <a [routerLink]="['/games', juego.id]"> 
+      <a [routerLink]="['/games', juego.id]">
         <img
           [src]="juego.thumbnail"
           class="card-img-top"
