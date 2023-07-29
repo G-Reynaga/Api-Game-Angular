@@ -1,3 +1,10 @@
+.details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
 .container {
   background-color: #172535;
   padding: 2rem;
@@ -5,7 +12,7 @@
   margin-bottom: 2rem;
 }
 
-.container a img{
+.container a img {
   width: 2rem;
   cursor: pointer;
   margin-bottom: 1rem;

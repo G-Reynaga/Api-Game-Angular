@@ -1,21 +1,25 @@
+<app-navbar></app-navbar>
+
 <h1>List of Video Games</h1>
 
 <div class="container selects">
   <div class="row justify-content-center">
     <div class="col-lg-4 d-flex">
-      <select class="form-select me-2 mb-3">
+      <select class="form-select me-2 mb-3" (change)="filterByGenero($event)">
         <option selected disabled>Category</option>
-        <option value="todos">Todos</option>
+        <option value="Todos">Todos</option>
         <option *ngFor="let genero of genres" [value]="genero">
           {{ genero }}
         </option>
       </select>
-      <select class="form-select mb-3">
+      <select class="form-select mb-3" (change)="filterByPlataforma($event)">
         <option selected disabled>Platform</option>
-        <option value="todos">Todos</option>
-        <option *ngFor="let plataforma of platforms" [value]="plataforma">
+        <option value="Todos">Todos</option>
+        <option value="pc">PC</option>
+        <option value="browser">Browser</option>
+        <!-- <option *ngFor="let plataforma of platforms" [value]="plataforma">
           {{ plataforma }}
-        </option>
+        </option> -->
       </select>
     </div>
   </div>

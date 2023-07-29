@@ -22,6 +22,11 @@ export class ListGameComponent implements OnInit {
   constructor(private apiGameService: ApiGameService, private router: Router) {}
 
   ngOnInit() {
+    // Suscríbete a los resultados de búsqueda actualizados desde el servicio compartido
+    this.apiGameService.searchResult$.subscribe((results: Game[]) => {
+      this.juegos = results;
+    });
+
     this.apiGameService.obtenerJuegos().subscribe(
       (juegos) => {
         this.juegos = juegos;
@@ -51,13 +56,24 @@ export class ListGameComponent implements OnInit {
     this.platforms = [...new Set(juegos.map((juego) => juego.platform))];
   }
 
-  filterByGenero(genero: string) {
-    if (genero === 'todos') {
-      this.filteredGames = this.juegos;
+  filterByGenero(event: Event) {
+    const genero = (event.target as HTMLSelectElement).value;
+    if (genero === 'Todos') {
+      this.apiGameService.obtenerJuegos().subscribe(
+        (juegos) => {
+          this.juegos = juegos;
+          console.log('Los Juegos son:', this.juegos);
+        },
+        (error) => {
+          console.log('Error al cargar los datos', error);
+        }
+      );
     } else {
       this.apiGameService.filterCategory(genero).subscribe(
         (juegosFiltrados) => {
           this.filteredGames = juegosFiltrados;
+          this.apiGameService.updateSearchResults(this.filteredGames);
+          console.log('Juegos filtrados por género', this.filteredGames);
         },
         (error) => {
           console.log('Error al filtrar por género', error);
@@ -66,13 +82,24 @@ export class ListGameComponent implements OnInit {
     }
   }
 
-  filterByPlataforma(plataforma: string) {
-    if (plataforma === 'todos') {
-      this.filteredGames = this.juegos;
+  filterByPlataforma(event: Event) {
+    const plataforma = (event.target as HTMLSelectElement).value;
+    if (plataforma === 'Todos') {
+      this.apiGameService.obtenerJuegos().subscribe(
+        (juegos) => {
+          this.juegos = juegos;
+          console.log('Los Juegos son:', this.juegos);
+        },
+        (error) => {
+          console.log('Error al cargar los datos', error);
+        }
+      );
     } else {
       this.apiGameService.filterPlataform(plataforma).subscribe(
         (juegosFiltrados) => {
           this.filteredGames = juegosFiltrados;
+          this.apiGameService.updateSearchResults(this.filteredGames);
+          console.log('Juegos filtrados por plataforma', this.filteredGames);
         },
         (error) => {
           console.log('Error al filtrar por plataforma', error);
@@ -80,6 +107,7 @@ export class ListGameComponent implements OnInit {
       );
     }
   }
+
   onPageChange(pageNumber: number) {
     this.currentPage = pageNumber;
   }

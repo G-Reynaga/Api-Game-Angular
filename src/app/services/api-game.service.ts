@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Game } from '../interfaces/game';
 
 @Injectable({
@@ -10,7 +10,18 @@ export class ApiGameService {
   private baseUrl = 'https://www.freetogame.com/api';
   private proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
+  private searchResultsSubject: BehaviorSubject<Game[]> = new BehaviorSubject<
+    Game[]
+  >([]);
+
+  public searchResult$: Observable<Game[]> =
+    this.searchResultsSubject.asObservable();
+
   constructor(private http: HttpClient) {}
+
+  updateSearchResults(results: Game[]): void {
+    this.searchResultsSubject.next(results);
+  }
 
   obtenerJuegos(): Observable<Game[]> {
     const url = `${this.proxyUrl}${this.baseUrl}/games`;

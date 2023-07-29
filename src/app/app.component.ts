@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(private router: Router) {}
 
-  redirectToGameList() {
-    this.router.navigate(['/games']);
-  }
+  // redirectToGameList() {
+  //   this.router.navigate(['/games']);
+  // }
 }

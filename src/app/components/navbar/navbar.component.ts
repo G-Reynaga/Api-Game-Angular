@@ -26,6 +26,9 @@ export class NavbarComponent {
           juego.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
         console.log('Resultados de la búsqueda:', this.searchResults);
+        
+        // Actualiza los resultados de búsqueda en el servicio compartido
+        this.apiGameService.updateSearchResults(this.searchResults);
       },
       (error) => {
         console.log('Error al buscar juegos por nombre:', error);
